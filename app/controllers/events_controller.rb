@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   respond_to :json, :html, :js
 
   def index
-    @events = Event.all
+    @events = Event.by_date(params[:year], params[:month], params[:day])
     respond_with(@events)
   end
 

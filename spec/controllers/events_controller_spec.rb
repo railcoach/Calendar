@@ -6,7 +6,7 @@ describe EventsController do
 
   describe "GET index" do
     before :each do
-      Event.stub(:all).and_return(events)
+      Event.stub(:by_date).and_return(events)
       get :index
     end
 
