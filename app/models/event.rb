@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  default_scope order('starts_at ASC')
+  default_scope order('starts_at ASC').where('starts_at >= ?', Time.now - 1.day)
 
   has_one :location, :dependent => :destroy
   accepts_nested_attributes_for :location
@@ -18,13 +18,15 @@ class Event < ActiveRecord::Base
   end
 
   def self.by_date(year = nil, month = nil, day = nil)
+    year,month,day = year.year, year.month, year.day if year.is_a?(Time)
     year = Time.now.year if year.nil?
     year = year.to_i if year
     month = month.to_i if month
     day = day.to_i if day
+    v = self.unscoped.order('starts_at ASC')
     if year && month && day
       date = Date.civil(year, month, day)
-      return where('DATE(starts_at) = ?', date)
+      return v.where('DATE(starts_at) = ?', date)
     elsif year && month
       startdate = Date.civil(year, month, 1)
       enddate = Date.civil(year, month, -1)
@@ -34,7 +36,7 @@ class Event < ActiveRecord::Base
     else
       raise "Something went wrong with by_date"
     end
-    where(:starts_at => startdate..enddate)
+    v.where(:starts_at => startdate..enddate)
   end
 
   private

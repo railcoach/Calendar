@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.by_date(params[:year], params[:month], params[:day])
+    @events_grouped_by_month = @events.group_by {}
     respond_with(@events)
   end
 
