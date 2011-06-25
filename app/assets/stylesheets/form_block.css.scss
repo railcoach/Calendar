@@ -24,20 +24,10 @@ label {
     margin: 10px;
   }
 
-  .datetime {
+  .datetime li {
     display: block;
     width: 50%;
     float: left;
-
-    fieldset {
-      width: 100%;
-    }
-
-    li {
-      float: left;
-      width: auto;
-      padding-right: 10px;
-    }
   }
 
   fieldset.buttons {
@@ -48,4 +38,10 @@ label {
       width: auto;
     }
   }
+}
+
+#event_description {
+  min-height: 188px;
+  min-width: 460px;
+  max-width: 460px;
 }

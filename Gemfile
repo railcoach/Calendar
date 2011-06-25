@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'formtastic'
 gem 'carmen'
 gem 'goose'
+gem 'chronic'
 
 # Asset template engines
 gem 'sass-rails', "~> 3.1.0.rc"

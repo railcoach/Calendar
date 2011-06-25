@@ -4,10 +4,14 @@ class Event < ActiveRecord::Base
   has_one :location, :dependent => :destroy
   accepts_nested_attributes_for :location
 
+  attr_accessor :starts_at_string, :ends_at_string
+
   validates :name, :presence => true
   validates :description, :presence => true
   validates :starts_at, :presence => true
   validates :ends_at, :presence => true
+
+  after_initialize :parse_dates
 
   def occures_at
     "#{self.starts_at.strftime("%H:%M %d/%m/%Y")} - #{self.ends_at.strftime("%H:%M %d/%m/%Y")}"
@@ -31,5 +35,12 @@ class Event < ActiveRecord::Base
       raise "Something went wrong with by_date"
     end
     where(:starts_at => startdate..enddate)
+  end
+
+  private
+
+  def parse_dates
+    self.starts_at = Chronic.parse(self.starts_at_string) if self.starts_at_string.present?
+    self.ends_at = Chronic.parse(self.ends_at_string) if self.starts_at_string.present?
   end
 end
