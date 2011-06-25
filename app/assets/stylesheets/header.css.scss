@@ -1,0 +1,97 @@
+
+header {
+    top: 0px;
+    left: 0px;
+    height: 50px;
+    width: 100%;
+    margin: 0px auto;
+    border-top: 5px solid #4cb363;
+    border-bottom: 2px solid #000000;
+    background-color: #000000;
+    background-image: -webkit-gradient(linear,
+        left top,
+        left bottom,
+        from(#000000),
+        to(#333333));
+    background-image: -moz-linear-gradient(
+        center top,
+        #000000 0%,
+        #333333 100%);
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    -moz-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 100;
+
+    & > .spacer {
+        position: relative;
+        width: 980px;
+        margin: 0px auto;
+    }
+
+    .logo {
+        position: absolute;
+        top: 8px;
+        right: 20px;
+    }
+
+    nav {
+        font-weight: bold;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        li {
+            float: left;
+            position: relative;
+
+            &.opened {
+                border-bottom: 2px solid #FFFFFF;
+            }
+
+            &.special {
+                font-style: italic;
+                & > a {
+                    color: #8888FF;
+                }
+            }
+
+            &:hover {
+                border-bottom: 2px solid #4cb363;
+
+                & > a {
+                    background-image: -webkit-gradient(linear,
+                        left top,
+                        left bottom,
+                        from(rgba(255, 255, 255, 0)),
+                        color-stop(0.25, rgba(255, 255, 255, 0)),
+                        to(rgba(255, 255, 255, 0.2)));
+                    background-image: -moz-linear-gradient(
+                        center top,
+                        rgba(255, 255, 255, 0) 25%,
+                        rgba(255, 255, 255, 0.2) 100%);
+                }
+            }
+
+            & > a {
+                display: block;
+                padding: 0px 20px;
+                line-height: 50px;
+                color: #FFFFFF;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.oldie {
+    .header {
+        background-color: #333333;
+
+        nav li a:hover {
+            background-color: #444444;
+        }
+    }
+}
