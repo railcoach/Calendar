@@ -6,9 +6,12 @@ gem 'rails', '3.1.0.rc4'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'formtastic'
+gem 'carmen'
 
 # Asset template engines
 gem 'sass-rails', "~> 3.1.0.rc"
+gem 'haml'
 gem 'coffee-script'
 gem 'uglifier'
 
@@ -30,7 +33,7 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
-  gem 'fabricator'
+  gem 'fabrication'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'guard-rails'
@@ -40,4 +43,5 @@ group :test, :development do
   gem 'guard-sprockets'
   gem 'guard-sass'
   gem 'guard-coffeescript'
+  gem "shoulda-matchers"
 end

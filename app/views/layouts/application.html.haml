@@ -1,0 +1,13 @@
+!!!
+%html
+%head
+  %title= yield :title
+  = stylesheet_link_tag     "application"
+  = javascript_include_tag  "application"
+  = csrf_meta_tags
+%body
+  %nav
+    %li= link_to 'events', events_path
+    %li= link_to 'new event', new_event_path
+  = yield
+
