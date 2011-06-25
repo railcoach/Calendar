@@ -2,7 +2,7 @@ Calendar::Application.routes.draw do
   root :to => 'events#index'
   resources :events do
     collection do
-      get ':year/(:month/(:day))' => 'events#index', :as => 'by_date'
+      get 'by_date/:year/(:month/(:day))' => 'events#index', :as => 'by_date'
     end
   end
 
