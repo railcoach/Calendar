@@ -1,13 +1,15 @@
-= semantic_form_for @event do |f|
-  = f.inputs :event do
+= semantic_form_for @event, :class => 'formBlock' do |f|
+  = f.inputs :event, :class => 'w1-2' do
     = f.input :name
     = f.input :description
+    = f.input :homepage
+  = f.inputs :dates, :class => 'w1-2' do
     = f.input :starts_at
     = f.input :ends_at
-    = f.input :homepage
-  = f.inputs :location, :for => :location do |l|
+  = f.inputs :location, :for => :location, :class => 'w1-2' do |l|
     = l.input :address
     = l.input :town
     = l.input :zipcode
     = l.input :country, :country => 'NL'
   = f.buttons
+  .break

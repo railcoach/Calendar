@@ -1,0 +1,51 @@
+label {
+  display: block;
+  font-weight: bold;
+}
+
+.formtastic {
+  li {
+    width: 100%;
+  }
+  input, textarea, select {
+    width: 100%;
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.7);
+    min-height: 20px;
+  }
+
+  fieldset {
+    display: block;
+    float: left;
+  }
+
+  .w1-2 {
+    width: 460px;
+    margin: 10px;
+  }
+
+  .datetime {
+    display: block;
+    width: 50%;
+    float: left;
+
+    fieldset {
+      width: 100%;
+    }
+
+    li {
+      float: left;
+      width: auto;
+      padding-right: 10px;
+    }
+  }
+
+  fieldset.buttons {
+    margin: 10px;
+    width: 940px;
+    text-align: right;
+    input {
+      width: auto;
+    }
+  }
+}
