@@ -15,6 +15,9 @@ class Event < ActiveRecord::Base
 
   def self.by_date(year = nil, month = nil, day = nil)
     year = Time.now.year if year.nil?
+    year = year.to_i if year
+    month = month.to_i if month
+    day = day.to_i if day
     if year && month && day
       date = Date.civil(year, month, day)
       return where('DATE(starts_at) = ?', date)

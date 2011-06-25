@@ -8,7 +8,7 @@ describe Location do
     describe "to_s" do
       it "should work" do
         location = Fabricate(:location)
-        location.to_s.should == ("#{location.address}, #{location.town}, #{location.country}")
+        location.to_s.should == ("#{location.address}, #{location.town.capitalize}, #{location.country.capitalize}")
       end
     end
   end

@@ -38,7 +38,12 @@ describe Event do
       
       it "should be chainable" do
         event = Fabricate(:event)
-        Event.by_date(event.starts_at.year).limit(10)
+        Event.by_date(event.starts_at.year).limit(10).should include(event)
+      end
+
+      it "should work with string" do
+        event = Fabricate(:event)
+        Event.by_date(event.starts_at.year.to_s).should include(event)
       end
     end
   end
