@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
   belongs_to :event
-  validates :country
+  validates :country, :presence => true
   
   def to_s
     if address && town && country
