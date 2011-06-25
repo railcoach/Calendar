@@ -30,6 +30,7 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'fabricator'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'guard-rails'
