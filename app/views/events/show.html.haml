@@ -1,1 +1,6 @@
-= render @event
+.event
+  %h1= link_to @event.name, @event
+  %p= @event.location
+  %p= @event.occures_at
+  %p= @event.description_to_html
+= link_to 'back', events_path

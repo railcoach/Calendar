@@ -1,5 +1,5 @@
 .event
-  %h1= event.name
+  %h1= link_to event.name, event
   %p= event.location
   %p= event.occures_at
-  %p= event.description
+  %p= truncate(event.description_to_html, :length => 150, :omission => ' [...]')

@@ -1,2 +1,5 @@
 = nav_at 'Events'
-= render @events
+- @events_grouped_by_month.each do |month, events|
+  .month
+    %h1= month
+    = render events

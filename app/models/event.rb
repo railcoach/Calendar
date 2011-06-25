@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  include ActionView::Helpers::SanitizeHelper
   default_scope order('starts_at ASC').where('starts_at >= ?', Time.now - 1.day)
 
   has_one :location, :dependent => :destroy
@@ -12,6 +13,7 @@ class Event < ActiveRecord::Base
   validates :ends_at, :presence => true
 
   after_initialize :parse_dates
+  before_save :sanitize_description
 
   def occures_at
     "#{self.starts_at.strftime("%H:%M %d/%m/%Y")} - #{self.ends_at.strftime("%H:%M %d/%m/%Y")}"
@@ -39,10 +41,18 @@ class Event < ActiveRecord::Base
     v.where(:starts_at => startdate..enddate)
   end
 
+  def description_to_html
+    RedCloth.new(description).to_html.html_safe
+  end
+
   private
 
   def parse_dates
     self.starts_at = Chronic.parse(self.starts_at_string) if self.starts_at_string.present?
     self.ends_at = Chronic.parse(self.ends_at_string) if self.starts_at_string.present?
+  end
+
+  def sanitize_description
+    description = sanitize(description)
   end
 end
