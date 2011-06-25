@@ -3,6 +3,6 @@ class Location < ActiveRecord::Base
   validates :country, :presence => true
   
   def to_s
-    [address,town,country].compact.join(", ")
+    [address,town,country].reject(&:blank?).join(", ")
   end
 end
