@@ -3,12 +3,6 @@ class Location < ActiveRecord::Base
   validates :country, :presence => true
   
   def to_s
-    if address && town && country
-      "#{address} - #{town}, #{country}"
-    elsif town && country
-      "#{town}, #{country}"
-    elsif country
-      "#{country}"
-    end
+    [address,town,country].compact.join(", ")
   end
 end
