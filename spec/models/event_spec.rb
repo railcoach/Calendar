@@ -47,4 +47,17 @@ describe Event do
       end
     end
   end
+
+  describe "Sanitize description" do
+    it "Should remove html after save" do
+      event = Fabricate(:event, :description => "<p><q><z>")
+      event.reload.description.should_not match(/(<.+>)+/)
+    end
+
+    it "Should work fine with textile" do
+      event = Fabricate(:event, :description => "h1. BLABLABLA\n BLABLALBLA")
+      description = event.description
+      event.reload.description.should == description
+    end
+  end
 end

@@ -53,6 +53,6 @@ class Event < ActiveRecord::Base
   end
 
   def sanitize_description
-    description = sanitize(description)
+    description.gsub!(/(<.+>)+/, '')
   end
 end
