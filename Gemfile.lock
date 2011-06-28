@@ -119,6 +119,7 @@ GEM
     rake (0.9.2)
     rb-fsevent (0.4.0)
     rdoc (3.6.1)
+    ri_cal (0.8.8)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -182,6 +183,7 @@ DEPENDENCIES
   jquery-rails
   rails (= 3.1.0.rc4)
   rb-fsevent
+  ri_cal
   rspec-rails
   sass-rails (~> 3.1.0.rc)
   shoulda-matchers

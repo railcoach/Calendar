@@ -1,4 +1,5 @@
-= nav_at 'Events'
+= nav_at 'My events'
+%h3 Past events have been automatically archived
 - if @events.any?
   - @events_grouped_by_month.each do |month, events|
     .month

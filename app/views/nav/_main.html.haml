@@ -3,3 +3,5 @@
     %ul
       %li= nav_to 'Events', events_path
       %li= nav_to 'New event', new_event_path
+      - if signed_in?
+        %li= nav_to 'My events', my_events_path

@@ -1,9 +1,15 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update]
-  respond_to :json, :html, :js
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :my_events]
+  respond_to :json, :html, :js, :ics
 
   def index
-    @events = Event.by_date(params[:year], params[:month], params[:day])
+    @events = Event.future.by_date(params[:year], params[:month], params[:day])
+    @events_grouped_by_month = @events.group_by { |x| x.starts_at.strftime('%B') }
+    respond_with(@events)
+  end
+
+  def my_events
+    @events = Event.future.by_date(params[:year], params[:month], params[:day]).where(:user_id => current_user)
     @events_grouped_by_month = @events.group_by { |x| x.starts_at.strftime('%B') }
     respond_with(@events)
   end

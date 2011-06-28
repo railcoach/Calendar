@@ -4,9 +4,10 @@
     = f.input :name
     = f.input :description, :input_html => {:rows => 7}
     = f.input :homepage, :as => :url
-  = f.inputs :dates, :class => 'w1-2 datetime' do
-    = f.input :starts_at_string, :required => true, :as => :string, :label => 'Starts at'
-    = f.input :ends_at_string, :required => true, :as => :string, :label => 'Ends at'
+  - if @event.new_record?
+    = f.inputs :dates, :class => 'w1-2 datetime' do
+      = f.input :starts_at_string, :required => true, :as => :string, :label => 'Starts at'
+      = f.input :ends_at_string, :required => true, :as => :string, :label => 'Ends at'
   = f.inputs :location, :for => :location, :class => 'w1-2' do |l|
     = l.input :address
     = l.input :town

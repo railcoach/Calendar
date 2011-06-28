@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User', :foreign_key => 'user_id'
-  default_scope order('starts_at ASC').where('starts_at >= ?', Time.now - 1.day)
+  default_scope order('starts_at ASC')
+  scope :future, where('starts_at >= ?', Time.now - 1.day)
+
 
   has_one :location, :dependent => :destroy
   accepts_nested_attributes_for :location
@@ -43,7 +45,15 @@ class Event < ActiveRecord::Base
   end
 
   def to_ics
+    RiCal.Event do |event|
+      event.summary = self.name
+      event.description = self.description
+      event.dtstart =  self.starts_at
+      event.dtend = self.ends_at
+      event.location = self.location.to_s
+    end
   end
+    
 
   def description_to_html
     RedCloth.new(description).to_html.html_safe
