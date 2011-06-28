@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe EventsController do
+  include Devise::TestHelpers
+
+  before(:each) do
+    @user = Fabricate(:user)
+    #controller.stub(:current_user).and_return(@user)
+    sign_in @user
+  end
+
   let(:event) { mock_model(Event).as_null_object }
   let(:events) { [mock_model(Event).as_null_object] }
 
@@ -30,6 +38,9 @@ describe EventsController do
         post :create, :event => event
       end
 
+      it "should set a flash message" do
+        flash[:notice].should_not be_nil
+      end
       it { should assign_to(:event).with(event) }
       it { should respond_with(:redirect) }
   end
@@ -47,6 +58,7 @@ describe EventsController do
   describe "GET edit" do
     before :each do
       Event.stub(:find).and_return(event)
+      event.stub(:owner).and_return(@user)
       get :edit, :id => event.id
     end
 

@@ -5,3 +5,5 @@
   %p= @event.occures_at
   %p= @event.description_to_html
 = link_to 'back', events_path
+- if current_user.is_owner_of?(@event)
+  = link_to 'edit', edit_event_path(@event)

@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  include ActionView::Helpers::SanitizeHelper
+  belongs_to :owner, :class_name => 'User', :foreign_key => 'user_id'
   default_scope order('starts_at ASC').where('starts_at >= ?', Time.now - 1.day)
 
   has_one :location, :dependent => :destroy
@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
   validates :description, :presence => true
   validates :starts_at, :presence => true
   validates :ends_at, :presence => true
+  validates :owner, :presence => true
 
   after_initialize :parse_dates
   before_save :sanitize_description
@@ -39,6 +40,9 @@ class Event < ActiveRecord::Base
       raise "Something went wrong with by_date"
     end
     v.where(:starts_at => startdate..enddate)
+  end
+
+  def to_ics
   end
 
   def description_to_html

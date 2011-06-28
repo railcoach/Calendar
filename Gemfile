@@ -11,6 +11,8 @@ gem 'formtastic'
 gem 'carmen'
 gem 'goose'
 gem 'chronic'
+gem 'devise'
+gem 'ri_cal'
 
 # Asset template engines
 gem 'sass-rails', "~> 3.1.0.rc"

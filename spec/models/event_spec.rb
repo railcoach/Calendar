@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe Event do
   it { should have_one(:location) }
+  it { should belong_to(:owner) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:starts_at) }
   it { should validate_presence_of(:ends_at) }
+  it { should validate_presence_of(:owner) }
 
   describe "Methods" do
     describe "occures_at" do

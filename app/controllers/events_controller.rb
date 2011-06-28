@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update]
   respond_to :json, :html, :js
 
   def index
@@ -20,8 +21,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(params[:event].merge(:owner => current_user))
     if @event.save
+      flash[:notice] = "Your event has been created."
       redirect_to @event, :notice => "Your event has been created."
     else
       render :new, :error => "Something went wrong!"
@@ -30,11 +32,13 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    redirect_to(events_path, :error => 'Hey, this isn\'t your event!' ) and return unless current_user.is_owner_of?(@event)
     respond_with(@event)
   end
 
   def update
     @event = Event.find(params[:id])
+    redirect_to( events_path, :error => 'Unauthorized' ) and return unless current_user.is_owner_of?(@event)
     if @event.update_attributes(params[:event])
       redirect_to @event, :notice => "Your event has been updated."
     else

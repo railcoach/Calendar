@@ -20,7 +20,12 @@
     .spacer
       = yield :main_navigation
       = link_to image_tag('logo.png', class: 'logo'), events_path
+      #user_controls
+        - unless user_signed_in?
+          = link_to 'Sign in', new_user_session_path
+          = link_to 'Sign up', new_user_registration_path
   .content
+    = render 'shared/flash'
     = yield
 
 </html>
