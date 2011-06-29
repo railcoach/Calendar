@@ -16,6 +16,7 @@ class Event < ActiveRecord::Base
   validates :owner, :presence => true
 
   after_initialize :parse_dates
+  after_initialize :setup_time_strings
   before_save :sanitize_description
 
   def occures_at
@@ -69,4 +70,12 @@ class Event < ActiveRecord::Base
   def sanitize_description
     description.gsub!(/(<.+>)+/, '')
   end
+
+  def setup_time_strings
+    if starts_at && ends_at
+      self.starts_at_string = starts_at.to_time.to_s if ! self.starts_at_string
+      self.ends_at_string = ends_at.to_time.to_s if ! self.ends_at_string
+    end
+  end
+
 end
