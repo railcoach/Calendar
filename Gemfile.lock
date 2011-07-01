@@ -48,6 +48,7 @@ GEM
       warden (~> 1.0.3)
     diff-lcs (1.1.2)
     erubis (2.7.0)
+    event-calendar (2.3.3)
     execjs (1.2.0)
       multi_json (~> 1.0)
     fabrication (1.0.0)
@@ -168,6 +169,7 @@ DEPENDENCIES
   chronic
   coffee-script
   devise
+  event-calendar
   fabrication
   formtastic
   goose
