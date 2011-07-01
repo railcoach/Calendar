@@ -2,6 +2,84 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body.events {
-  // Place scoped styles here
+.month {
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+
+  h1 {
+    display: block;
+    padding: 5px;
+    font-size: 20px;
+  }
+}
+
+div.event {
+  background-color: rgba(255, 255, 255, 0.7);
+  float: left;
+  margin: 5px;
+  width: 293px;
+  font-size: 12px;
+  padding: 5px;
+
+  &:nth-child(3n+1) {
+    width: 294px;
+  }
+
+  &.single {
+    width: 940px;
+  }
+
+  h1 {
+    font-size: 15px;
+    padding: 0px;
+    margin-bottom: 5px;
+    display: block;
+    position: relative;
+
+    a {
+      display: block;
+      background-color: #4cb363;
+      line-height: 30px;
+      padding: 0px 5px;
+      color: #FFFFFF;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    span {
+      display: block;
+      background-color: #4cb363;
+      line-height: 30px;
+      padding: 0px 5px;
+      color: #FFFFFF;
+    }
+    .tools {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+
+      a {
+        font-size: 12px;
+        float: right;
+        padding: 0px 5px;
+      }
+    }
+  }
+  p {
+    margin: 0px 0px 10px;
+
+    &:last-child {
+      margin: 0px;
+    }
+  }
+  h2 {
+    font-size: 12px;
+    margin: 0px;
+  }
+  .column {
+    width: 50px;
+    float: left;
+  }
 }
