@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  has_event_calendar :start_at_field => 'starts_at', :end_at_field => 'ends_at'
+
   belongs_to :owner, :class_name => 'User', :foreign_key => 'user_id'
   default_scope order('starts_at ASC')
   scope :future, where('starts_at >= ?', Time.now - 1.day)

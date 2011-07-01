@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :my_events]
-  respond_to :json, :html, :js, :ics
+  respond_to :json, :html, :js, :ics, :xml
 
   def index
     @events = Event.future.by_date(params[:year], params[:month], params[:day])
