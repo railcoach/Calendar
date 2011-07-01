@@ -14,6 +14,6 @@
     %h2= 'Description'
     = @event.description_to_html
   .column
-    %script= "$(document).ready(function() { create_address_map('#{@event.location}', 'organization_map_canvas'); });"
-    #organization_map_canvas
+    %script= "$(document).ready(function() { create_address_map('#{@event.location}', 'event_map_canvas'); });"
+    #event_map_canvas
   .break

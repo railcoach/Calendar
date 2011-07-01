@@ -79,7 +79,11 @@ div.event {
     margin: 0px;
   }
   .column {
-    width: 50px;
+    width: 50%;
     float: left;
   }
+}
+#event_map_canvas {
+  height: 300px;
+  width: 100%;
 }
