@@ -3,7 +3,7 @@
  * Handles when events span rows, or don't have a background color
  */
 jQuery(document).ready(function($) {
-  var highlight_color = "#2EAC6A";
+  var highlight_color = "#4cb363";
   
   // highlight events that have a background color
   $(".ec-event-bg").live("mouseover", function() {
