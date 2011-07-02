@@ -38,6 +38,12 @@ label {
       width: auto;
     }
   }
+  label {
+    input {
+      float: left;
+      width: 20px;
+    }
+  }
 }
 
 #event_starts_at_string_input {
