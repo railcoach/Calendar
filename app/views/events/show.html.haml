@@ -1,10 +1,19 @@
 = nav_at 'Events'
-.event
-  %h1= link_to @event.name, @event
-  %p= @event.location
-  %p= @event.occures_at
-  %p= @event.description_to_html
-= link_to 'back', events_path
-- if signed_in?
-  - if current_user.is_owner_of?(@event)
-    = link_to 'edit', edit_event_path(@event)
+.event.single
+  %h1
+    %span= @event.name
+    .tools
+      = link_to 'back', events_path
+      - if signed_in?
+        - if current_user.is_owner_of?(@event)
+          = link_to 'edit', edit_event_path(@event)
+  .column
+    %p= @event.occures_at
+    %h2= 'Location'
+    %p= @event.location
+    %h2= 'Description'
+    = @event.description_to_html
+  .column
+    %script= "$(document).ready(function() { create_address_map('#{@event.location}', 'event_map_canvas'); });"
+    #event_map_canvas
+  .break
