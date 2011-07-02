@@ -11,9 +11,19 @@ describe Event do
 
   describe "Methods" do
     describe "occures_at" do
-      it "should work" do
+      it "should show full date-time start and end if non-all-day event" do
         event = Fabricate(:event)
         event.occures_at.should match("^#{event.starts_at.strftime("%H:%M %d/%m/%Y")} - #{event.ends_at.strftime("%H:%M %d/%m/%Y")}$")
+      end
+
+      it "should show only one date for single day events" do
+        event = Fabricate(:event, :all_day => true, :starts_at => DateTime.now, :ends_at => DateTime.now)
+        event.occures_at.should match("^all day at #{event.starts_at.strftime("%d/%m/%Y")}$")
+      end
+
+      it "should show the start and end date for all_day events with different start and end date" do
+        event = Fabricate(:event, :all_day => true)
+        event.occures_at.should match("^#{event.starts_at.strftime("%d/%m/%Y")} - #{event.ends_at.strftime("%d/%m/%Y")}$")
       end
     end
 

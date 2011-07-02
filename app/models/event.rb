@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
 
   def occures_at
     if self.all_day
-      if self.starts_at.to_date == self.starts_at.to_date
+      if self.starts_at.to_date == self.ends_at.to_date
         return "all day at #{self.starts_at.strftime("%d/%m/%Y")}"
       else
         return "#{self.starts_at.strftime("%d/%m/%Y")} - #{self.ends_at.strftime("%d/%m/%Y")}"
