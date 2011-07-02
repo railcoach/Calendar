@@ -25,6 +25,8 @@ describe Event do
 
       it "should return objects if year/month are passed" do
         event = Fabricate(:event)
+        puts event.starts_at
+        puts Event.by_date(event.starts_at.year, event.starts_at.month).to_sql
         Event.by_date(event.starts_at.year, event.starts_at.month).should include(event)
       end
 

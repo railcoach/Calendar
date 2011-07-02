@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   validates :owner, :presence => true
 
   after_initialize :parse_dates
-  after_initialize :setup_time_strings
+  #after_initialize :setup_time_strings
   before_save :sanitize_description
 
   def occures_at
@@ -42,7 +42,7 @@ class Event < ActiveRecord::Base
     v = self.unscoped.order('starts_at ASC')
     if year && month && day
       date = Date.civil(year, month, day)
-      return v.where('DATE(starts_at) = ?', date)
+      return v.where('DATE(starts_at) = DATE(?)', date)
     elsif year && month
       startdate = Date.civil(year, month, 1)
       enddate = Date.civil(year, month, -1)
@@ -52,7 +52,7 @@ class Event < ActiveRecord::Base
     else
       raise "Something went wrong with by_date"
     end
-    v.where(:starts_at => startdate..enddate)
+    v.where('DATE(starts_at) BETWEEN ? AND ?', startdate, enddate)
   end
 
   def to_ics
