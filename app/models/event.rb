@@ -22,7 +22,15 @@ class Event < ActiveRecord::Base
   before_save :sanitize_description
 
   def occures_at
-    "#{self.starts_at.strftime("%H:%M %d/%m/%Y")} - #{self.ends_at.strftime("%H:%M %d/%m/%Y")}"
+    if self.all_day
+      if self.starts_at.to_date == self.starts_at.to_date
+        return "all day at #{self.starts_at.strftime("%d/%m/%Y")}"
+      else
+        return "#{self.starts_at.strftime("%d/%m/%Y")} - #{self.ends_at.strftime("%d/%m/%Y")}"
+      end
+    else
+      return "#{self.starts_at.strftime("%H:%M %d/%m/%Y")} - #{self.ends_at.strftime("%H:%M %d/%m/%Y")}"
+    end
   end
 
   def self.by_date(year = nil, month = nil, day = nil)
