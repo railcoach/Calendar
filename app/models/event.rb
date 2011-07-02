@@ -21,6 +21,12 @@ class Event < ActiveRecord::Base
   #after_initialize :setup_time_strings
   before_save :sanitize_description
 
+  def self.search(params)
+    result = params.split(' ').inject(Event.scoped) do |query, param|
+      query = query.where('name LIKE ?', param.gsub(/(.+)/, '%\1%'))
+    end
+  end
+
   def occures_at
     "#{self.starts_at.strftime("%H:%M %d/%m/%Y")} - #{self.ends_at.strftime("%H:%M %d/%m/%Y")}"
   end

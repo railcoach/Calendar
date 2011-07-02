@@ -64,4 +64,18 @@ describe Event do
       event.reload.description.should == description
     end
   end
+
+  describe "Search" do
+    it "should return results" do
+      event = Fabricate(:event, :name => "What I do")
+
+      puts Event.search('What').to_sql
+      Event.search('What').should include(event)
+      Event.search('I').should include(event)
+      Event.search('do').should include(event)
+      Event.search('What I').should include(event)
+      Event.search('What I do').should include(event)
+      Event.search("What I do").size.should be(1)
+    end
+  end
 end

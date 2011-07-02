@@ -27,6 +27,10 @@
         - else
           = link_to 'Sign in', new_user_session_path
           = link_to 'Sign up', new_user_registration_path
+      #search_box
+        = form_tag '/search', :method => :get do
+          = text_field_tag :query, params[:query]
+          = submit_tag 'Search'
   .content
     = render 'shared/flash'
     = yield

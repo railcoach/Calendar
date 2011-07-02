@@ -11,6 +11,8 @@ Calendar::Application.routes.draw do
   get 'my_events' => 'events#my_events', :as => 'my_events', :prefix => ''
   get 'my_events/by_date/:year/(:month/(:day))' => 'events#my_events', :as => 'my_events_by_date', :prefix => ''
 
+  get '/search/(:query)' => 'search#search', :as => 'search'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
