@@ -18,7 +18,7 @@
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 11px;
   line-height: 14px;
-  margin: 0;
+  margin: 10px 0px 0px;
   padding: 0;
   border-bottom: 1px solid #d5d5d5;
 }
@@ -33,17 +33,19 @@
 .ec-month-name {
   font-size: 16px;
   font-weight: bold;
+  text-align: center;
 }
 
-.ec-month-nav {
-
+.ec-month-nav a {
+  color: #4cb363;
 }
 
 /* Containers */
 .ec-body {
   position: relative;
-  border-right: 1px solid #303030;
+  border-right: 1px solid #4cb363;
   white-space: nowrap;
+  margin-top: 5px;
 }
 
 /* Day names */
@@ -53,13 +55,14 @@
   left: 0;
   width: 100%;
   table-layout: fixed;
-  padding: 2px 0;
-  background: #303030;
+  padding: 5px 0;
+  background: #4cb363;
   color: white;
 }
 
 .ec-day-name {
   font-weight: normal;
+  padding: 0px 5px;
 }
 
 /* Rows container and Row */
@@ -234,4 +237,8 @@ a.ec-day-link {
   -webkit-border-radius: 2px;
   -khtml-border-radius: 2px;
   -moz-border-radius: 2px;
+}
+
+.ec-next-month {
+  text-align: right;
 }
