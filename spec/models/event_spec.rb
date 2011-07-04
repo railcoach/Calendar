@@ -27,6 +27,20 @@ describe Event do
       end
     end
 
+    describe "to_ics" do
+      it "should work" do
+        event = Fabricate(:event)
+        event.to_ics.should be_a(RiCal::Component::Event)
+      end
+    end
+
+    describe "description_to_html" do
+      it "should work" do
+        event = Fabricate(:event, :description => "h1. Test")
+        event.description_to_html.to_s.should  == ("<h1>Test</h1>")
+      end
+    end
+
     describe "by_date" do
       it "should return objects if year/month/day are passed" do
         event = Fabricate(:event)
@@ -35,8 +49,6 @@ describe Event do
 
       it "should return objects if year/month are passed" do
         event = Fabricate(:event)
-        puts event.starts_at
-        puts Event.by_date(event.starts_at.year, event.starts_at.month).to_sql
         Event.by_date(event.starts_at.year, event.starts_at.month).should include(event)
       end
 
@@ -79,7 +91,6 @@ describe Event do
     it "should return results" do
       event = Fabricate(:event, :name => "What I do")
 
-      puts Event.search('What').to_sql
       Event.search('What').should include(event)
       Event.search('I').should include(event)
       Event.search('do').should include(event)

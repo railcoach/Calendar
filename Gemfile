@@ -50,4 +50,5 @@ group :test, :development do
   gem 'guard-sass'
   gem 'guard-coffeescript'
   gem "shoulda-matchers"
+  gem 'simplecov', :require => false
 end

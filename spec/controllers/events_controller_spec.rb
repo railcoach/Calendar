@@ -5,7 +5,7 @@ describe EventsController do
 
   before(:each) do
     @user = Fabricate(:user)
-    #controller.stub(:current_user).and_return(@user)
+    controller.stub(:current_user).and_return(@user)
     sign_in @user
   end
 
@@ -69,11 +69,24 @@ describe EventsController do
   describe "PUT update" do
     before :each do
       Event.stub(:find).and_return(event)
+      @user.stub(:is_owner_of?).with(event).and_return(true)
+      event.should_receive(:update_attributes).and_return(true)
       put :update, :id => event.id, :event => event
     end
 
 
     it { should assign_to(:event).with(event) }
     it { should respond_with(:redirect) }
+  end
+
+  describe "GET my_events" do
+    before(:each) do
+      Event.stub_chain(:future, :by_date, :where).and_return(events)
+      get 'my_events'
+    end
+    
+    it { should assign_to(:events) }
+    it { should assign_to(:events_grouped_by_month) }
+    it { should respond_with(:success) }
   end
 end

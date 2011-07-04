@@ -141,6 +141,9 @@ GEM
       sass (>= 3.1.2)
       sprockets (>= 2.0.0.beta.9)
     shoulda-matchers (1.0.0.beta2)
+    simplecov (0.4.2)
+      simplecov-html (~> 0.4.4)
+    simplecov-html (0.4.5)
     spork (0.8.5)
     sprockets (2.0.0.beta.10)
       hike (~> 1.0)
@@ -189,6 +192,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.1.0.rc)
   shoulda-matchers
+  simplecov
   sqlite3
   turn
   uglifier

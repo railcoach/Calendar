@@ -1,19 +1,20 @@
 Calendar::Application.routes.draw do
   devise_for :users
-  match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-  root :to => 'events#index'
+  match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/}
   resources :events do
     collection do
       get 'by_date/:year/(:month/(:day))' => 'events#index', :as => 'by_date'
     end
   end
 
-  get 'my_events' => 'events#my_events', :as => 'my_events', :prefix => ''
-  get 'my_events/by_date/:year/(:month/(:day))' => 'events#my_events', :as => 'my_events_by_date', :prefix => ''
+  get 'my_events' => 'events#my_events', :as => 'my_events'
+  get 'my_events/by_date/:year/(:month/(:day))' => 'events#my_events', :as => 'my_events_by_date',
+    :constraints => { :year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/ }
 
   get '/search/(:query)' => 'search#search', :as => 'search'
 
 
+  root :to => 'events#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

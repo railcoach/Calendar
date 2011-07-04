@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   has_event_calendar :start_at_field => 'starts_at', :end_at_field => 'ends_at'
 
   belongs_to :owner, :class_name => 'User', :foreign_key => 'user_id'
-  default_scope order('starts_at ASC')
+  default_scope order('starts_at ASC').includes(:location)
   scope :future, where('starts_at >= ?', Time.now - 1.day)
 
 
@@ -26,6 +26,7 @@ class Event < ActiveRecord::Base
       query = query.where('name LIKE ?', param.gsub(/(.+)/, '%\1%'))
     end
   end
+
 
   def occures_at
     if self.all_day
@@ -85,13 +86,6 @@ class Event < ActiveRecord::Base
 
   def sanitize_description
     description.gsub!(/(<.+>)+/, '')
-  end
-
-  def setup_time_strings
-    if starts_at && ends_at
-      self.starts_at_string = starts_at.to_time.to_s if ! self.starts_at_string
-      self.ends_at_string = ends_at.to_time.to_s if ! self.ends_at_string
-    end
   end
 
 end
